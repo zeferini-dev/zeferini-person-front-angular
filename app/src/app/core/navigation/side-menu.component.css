@@ -1,0 +1,23 @@
+.side-menu {
+  display: block;
+  padding: 12px;
+}
+
+.side-menu__section {
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  font-weight: 700;
+  color: rgba(0, 0, 0, 0.54);
+  padding: 12px 16px 4px;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.side-menu__external {
+  margin-left: auto;
+  color: rgba(0, 0, 0, 0.54);
+}
+
+.is-active {
+  font-weight: 700;
+}

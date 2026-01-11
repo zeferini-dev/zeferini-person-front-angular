@@ -1,0 +1,31 @@
+<nav class="side-menu" aria-label="Menu principal">
+  <mat-nav-list>
+    <a
+      mat-list-item
+      *ngFor="let item of mainLinks"
+      [routerLink]="item.path"
+      routerLinkActive="is-active"
+      (click)="onNavigate()"
+    >
+      <mat-icon matListItemIcon>{{ item.icon }}</mat-icon>
+      <span matListItemTitle>{{ item.label }}</span>
+    </a>
+  </mat-nav-list>
+
+  <p class="side-menu__section">APIs</p>
+  <mat-nav-list>
+    <a
+      mat-list-item
+      *ngFor="let item of apiLinks"
+      [href]="item.href"
+      target="_blank"
+      rel="noreferrer"
+    >
+      <mat-icon matListItemIcon>{{ item.icon }}</mat-icon>
+      <span matListItemTitle>{{ item.label }}</span>
+      <span class="side-menu__external" aria-hidden="true">
+        <mat-icon inline>open_in_new</mat-icon>
+      </span>
+    </a>
+  </mat-nav-list>
+</nav>

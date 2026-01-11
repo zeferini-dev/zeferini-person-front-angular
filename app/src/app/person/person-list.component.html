@@ -1,0 +1,98 @@
+<div class="person-list">
+  <div class="person-list__header">
+    <h1 class="person-list__title">
+      <mat-icon class="person-list__icon">group</mat-icon>
+      Pessoas
+    </h1>
+    <div class="person-list__controls">
+      <button 
+        mat-icon-button 
+        (click)="onRefreshNow()" 
+        aria-label="Atualizar agora"
+        matTooltip="Atualizar agora"
+        [disabled]="loading()"
+      >
+        <mat-icon>refresh</mat-icon>
+      </button>
+      <a mat-raised-button color="primary" routerLink="/persons/new">
+        <mat-icon>person_add</mat-icon>
+        Nova Pessoa
+      </a>
+    </div>
+  </div>
+
+  @if (loading()) {
+    <div class="person-list__loading">
+      <mat-spinner diameter="48"></mat-spinner>
+      <p>Carregando pessoas...</p>
+    </div>
+  } @else if (persons().length === 0) {
+    <mat-card class="person-list__empty" appearance="outlined">
+      <mat-card-content>
+        <mat-icon class="person-list__empty-icon">sentiment_dissatisfied</mat-icon>
+        <h2>Nenhuma pessoa cadastrada</h2>
+        <p>Comece adicionando a primeira pessoa ao sistema.</p>
+        <a mat-raised-button color="primary" routerLink="/persons/new">
+          <mat-icon>person_add</mat-icon>
+          Adicionar Pessoa
+        </a>
+      </mat-card-content>
+    </mat-card>
+  } @else {
+    <mat-card appearance="outlined">
+      <table mat-table [dataSource]="persons()" class="person-list__table">
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef>ID</th>
+          <td mat-cell *matCellDef="let person">{{ person.id }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef>Nome</th>
+          <td mat-cell *matCellDef="let person">
+            <strong>{{ person.name }}</strong>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="email">
+          <th mat-header-cell *matHeaderCellDef>E-mail</th>
+          <td mat-cell *matCellDef="let person">
+            <a [href]="'mailto:' + person.email" class="person-list__email">
+              {{ person.email }}
+            </a>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="actions">
+          <th mat-header-cell *matHeaderCellDef class="person-list__actions-header">Ações</th>
+          <td mat-cell *matCellDef="let person" class="person-list__actions">
+            <button
+              mat-icon-button
+              color="primary"
+              [routerLink]="['/persons', person.id, 'edit']"
+              aria-label="Editar"
+              matTooltip="Editar pessoa"
+            >
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button
+              mat-icon-button
+              color="warn"
+              (click)="onDelete(person)"
+              aria-label="Excluir"
+              matTooltip="Excluir pessoa"
+            >
+              <mat-icon>delete</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr
+          mat-row
+          *matRowDef="let row; columns: displayedColumns"
+          class="person-list__row"
+        ></tr>
+      </table>
+    </mat-card>
+  }
+</div>

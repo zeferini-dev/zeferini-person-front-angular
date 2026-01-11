@@ -1,0 +1,36 @@
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  padding-inline: 8px;
+  backdrop-filter: blur(10px);
+}
+
+.navbar__brand {
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  margin-left: 8px;
+}
+
+.navbar__divider {
+  height: 24px;
+  width: 1px;
+  background: rgba(255, 255, 255, 0.38);
+  margin: 0 12px;
+  border-radius: 999px;
+}
+
+.navbar__spacer {
+  flex: 1;
+}
+
+.navbar__framework {
+  font-weight: 600;
+  font-size: 1.125rem;
+  letter-spacing: 0.5px;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.is-active {
+  font-weight: 700;
+}
