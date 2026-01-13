@@ -7,9 +7,10 @@ import { Observable, Subject, delay } from 'rxjs';
 @Injectable({ providedIn: 'root' })
 export class PersonService {
   private readonly http = inject(HttpClient);
-  private readonly commandUrl = inject(API_COMMAND_URL); // MySQL - porta 3000
-  private readonly queryUrl = inject(API_QUERY_URL);     // MongoDB - porta 3001
-  private readonly commandResource = `${this.commandUrl}/persons`;
+  private readonly commandUrl = inject(API_COMMAND_URL); // Gateway -> Load Balanced
+  private readonly queryUrl = inject(API_QUERY_URL);     // Gateway -> MongoDB
+  // Command URL já inclui /api/persons, Query URL inclui /api/query
+  private readonly commandResource = this.commandUrl;
   private readonly queryResource = `${this.queryUrl}/persons`;
   
   // Subject para triggerar refresh na lista

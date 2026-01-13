@@ -28,13 +28,13 @@ export class SideMenuComponent implements OnInit {
   apiLinks: NavItem[] = [];
 
   ngOnInit(): void {
-    const baseUrl = `${window.location.protocol}//${window.location.hostname}:3000`;
+    const gatewayUrl = `${window.location.protocol}//${window.location.hostname}:8084`;
     this.apiLinks = [
-      { label: 'API Docs', icon: 'description', href: `${baseUrl}/api` },
-      { label: 'API JSON', icon: 'data_object', href: `${baseUrl}/openapi.json` },
-      { label: 'API Persons', icon: 'list', href: `${baseUrl}/persons` },
-      { label: 'API Root', icon: 'home', href: `${baseUrl}/` },
-      { label: 'API JSON (Nest)', icon: 'code', href: `${baseUrl}/api-json` },
+      { label: 'API Gateway', icon: 'hub', href: `${gatewayUrl}/` },
+      { label: 'Swagger NestJS', icon: 'description', href: `${gatewayUrl}/swagger/nestjs` },
+      { label: 'Swagger .NET', icon: 'code', href: `${gatewayUrl}/swagger/dotnet` },
+      { label: 'API Persons', icon: 'list', href: `${gatewayUrl}/api/persons` },
+      { label: 'Health Check', icon: 'monitor_heart', href: `${gatewayUrl}/health` },
     ];
   }
 
