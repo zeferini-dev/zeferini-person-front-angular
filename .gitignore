@@ -2,7 +2,11 @@ node_modules
 
 dist
 
-# IDEs
+# Visual Studio Code settings
 .vscode/
+/.vscode/
+
+# Visual Studio settings
 .vs/
+/.vs/
 .idea/
